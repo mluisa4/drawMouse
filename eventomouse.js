@@ -1,15 +1,21 @@
-//var texto= document.getElementById("texto_lineas");
-//var boton= document.getElementById("botoncito");
-//document.addEventListener("mousedown", dibujoPorMouse);
-document.addEventListener("mousedown", dibujarMouse);
-//document.addEventListener("mousemove", dibujarCorrido);
 
-////trayendo el canvas desde HTML//////////////////
+
+document.addEventListener("mousedown", iniciaDibujo);
+document.addEventListener("mouseup", paraDibujo);
+document.addEventListener("mousemove", dibujarMientras);
+
 var d = document.getElementById("dibujito");
 var lienzo = d.getContext("2d");
 console.log(lienzo);
+var dibuja = false;
 
+var ancho = lienzo.width;
+var alto = lienzo.height;
+var x = ancho/2;
+var y = alto/2;
+var avance = 10;
 
+//funcion que dibuja la linea luego de recibir el evento mousemove
 function dibujarLinea(color, xinicial, yinicial, xfinal, yfinal, lienzo1)
 {
   lienzo1.beginPath();
@@ -20,23 +26,33 @@ function dibujarLinea(color, xinicial, yinicial, xfinal, yfinal, lienzo1)
   lienzo1.closePath();
 }
 
+//funcion que recibe el evento mousedown y activa el dibujo
+function iniciaDibujo(evento)
+  {
+  dibuja = true;
+  }
+//funcion que dibuja mientras esta activado el mousemove
+function dibujarMientras(evento)
+{
+   if (dibuja == true){
+  //var xin = evento.clientX;
+  //var yin = evento.clientY;
+//  var xfin = (evento.clientX - evento.offsetX);
+  //var yfin = (evento.clientY - evento.offsetY);
+  //dibujarLinea("red", xin, yin, xfin, yfin, lienzo);
+  //console.log(evento);
+  //console.log(dibuja); }
 
-function dibujarMouse(){
+   console.log(evento);
 
-  dibujarLinea("red", 0, 300, 150, 0, lienzo);
+ 	 dibujarLinea("Green",x, y,evento.offsetX,evento.offsetY,lienzo);
+	 x = evento.layerX;
+	 y = evento.layerY;
+ }
 }
 
-
-//function dibujarCorrido(evento)
-//{
-  //  var a = evento.clientX;
-  //  var b = evento.clientY;
-  //  var xf = 0;
-  //  var yf = 0;
-  //  dibujarLinea("red", a, b, xf, yf, lienzo);
-  //  document.write("Esta es la prueba del dibujo corrido");
-  //  console.log(lienzo);
-  //  console.log(a);
-//    console.log(b);
-
-//}
+//funcion que recibe el evento mouseup y desactiva el dibujo
+function paraDibujo(evento)
+  {
+    dibuja = false;
+  }
