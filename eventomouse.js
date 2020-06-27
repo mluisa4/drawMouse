@@ -1,7 +1,7 @@
 //var texto= document.getElementById("texto_lineas");
 //var boton= document.getElementById("botoncito");
 //document.addEventListener("mousedown", dibujoPorMouse);
-//document.addEventListener("mousedown", dibujarCorrido);
+document.addEventListener("mousedown", dibujarMouse);
 //document.addEventListener("mousemove", dibujarCorrido);
 
 ////trayendo el canvas desde HTML//////////////////
@@ -20,7 +20,12 @@ function dibujarLinea(color, xinicial, yinicial, xfinal, yfinal, lienzo1)
   lienzo1.closePath();
 }
 
-dibujarLinea("red", 0, 300, 150, 0, lienzo);
+
+function dibujarMouse(){
+
+  dibujarLinea("red", 0, 300, 150, 0, lienzo);
+}
+
 
 //function dibujarCorrido(evento)
 //{
