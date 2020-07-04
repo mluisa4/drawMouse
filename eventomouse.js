@@ -38,6 +38,7 @@ function dibujarMientras(evento)
    dibujarLinea( "Red", x, y, evento.offsetX, evento.offsetY, lienzo);
    x = evento.offsetX;
    y = evento.offsetY;
+   console.log(evento);
  }
 }
 
